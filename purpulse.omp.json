@@ -1,0 +1,106 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "upgrade": {
+    "source": "cdn",
+    "interval": "168h",
+    "auto": false,
+    "notice": false
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "leading_diamond": "\ue0b6",
+          "template": " \ue70f {{ if .Root }}System32{{ else }}{{ .UserName }}{{ end }} ",
+          "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b4",
+          "background": "#5f55e6",
+          "type": "session",
+          "style": "diamond"
+        },
+        {
+          "options": {
+            "max_depth": 3,
+            "style": "mixed"
+          },
+          "template": " 📁 {{ .Path }} ",
+          "foreground": "#f1f2f6",
+          "powerline_symbol": "\ue0b4",
+          "background": "#4834d4",
+          "type": "path",
+          "style": "powerline"
+        },
+        {
+          "options": {
+            "precision": 1
+          },
+          "template": " \ue266 MEM: {{ round .PhysicalPercentUsed .Precision }}% | {{ divf (sub .PhysicalTotalMemory .PhysicalAvailableMemory) 1073741824.0 | printf \"%.2f\" }}/{{ divf .PhysicalTotalMemory 1073741824.0 | printf \"%.0f\" }}GB \ue266 ",
+          "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b4",
+          "background": "#372596",
+          "type": "sysinfo",
+          "style": "powerline"
+        },
+        {
+          "template": " \ue725 {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }} \u25cf{{ end }}{{ if gt .Ahead 0 }} \u2191{{ .Ahead }}{{ end }}{{ if gt .Behind 0 }} \u2193{{ .Behind }}{{ end }} ",
+          "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b4",
+          "background": "#6c5ce7",
+          "type": "git",
+          "style": "powerline"
+        }
+      ]
+    },
+    {
+      "type": "rprompt",
+      "segments": [
+        {
+          "options": {
+            "threshold": 0
+          },
+          "leading_diamond": "\ue0b6",
+          "template": " \u23f1 {{ divf .Ms 1000.0 | printf \"%.2f\" }}s ",
+          "foreground": "#a8abb0",
+          "powerline_symbol": "\ue0b6",
+          "background": "#282a2e",
+          "type": "executiontime",
+          "style": "diamond",
+          "invert_powerline": true
+        },
+        {
+          "template": " \uf017 {{ .CurrentDate | date \"15:04:05\" }} ",
+          "foreground": "#c4c7c5",
+          "powerline_symbol": "\ue0b6",
+          "background": "#212327",
+          "type": "time",
+          "style": "powerline",
+          "invert_powerline": true
+        },
+        {
+          "trailing_diamond": "\ue0b4",
+          "template": " {{ .CurrentDate | date \"Monday\" }} ",
+          "foreground": "#e3e3e3",
+          "background": "#1a1b1e",
+          "type": "time",
+          "style": "diamond"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "template": "\u2570\u2500❯ ",
+          "foreground": "#5f55e6",
+          "type": "text",
+          "style": "plain"
+        }
+      ],
+      "newline": true
+    }
+  ],
+  "version": 2
+}
